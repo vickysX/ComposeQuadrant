@@ -3,10 +3,7 @@ package com.example.composequadrant
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -31,7 +28,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
+                    ComposeCards()
                 }
             }
         }
@@ -39,8 +36,41 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
+fun ComposeCards() {
+    Column() {
+        Row(Modifier.weight(1f, true)) {
+            Column(Modifier.weight(1f, true)) {
+                Quadrant(
+                    titleRes = R.string.text_title,
+                    textRes = R.string.text_text,
+                    backgroundColor = Color.Green
+                )
+            }
+            Column(Modifier.weight(1f, true)) {
+                Quadrant(
+                    titleRes = R.string.image_title,
+                    textRes = R.string.image_text,
+                    backgroundColor = Color.Yellow
+                )
+            }
+        }
+        Row(Modifier.weight(1f, true)) {
+            Column(Modifier.weight(1f, true)) {
+                Quadrant(
+                    titleRes = R.string.row_title,
+                    textRes = R.string.row_text,
+                    backgroundColor = Color.Cyan
+                )
+            }
+            Column(Modifier.weight(1f, true)) {
+                Quadrant(
+                    titleRes = R.string.column_title,
+                    textRes = R.string.column_text,
+                    backgroundColor = Color.LightGray
+                )
+            }
+        }
+    }
 }
 
 @Composable
@@ -71,6 +101,6 @@ fun Quadrant(titleRes: Int, textRes: Int, backgroundColor: Color) {
 @Composable
 fun DefaultPreview() {
     ComposeQuadrantTheme {
-        Quadrant(R.string.text_title, R.string.text_text, Color.Green)
+        ComposeCards()
     }
 }
